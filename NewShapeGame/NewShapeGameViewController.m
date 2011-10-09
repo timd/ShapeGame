@@ -10,15 +10,6 @@
 
 #import "BoardCell.h"
 
-#define kBlueCursor 1
-#define kGreenCursor 2
-#define kRedCursor 3 
-#define kYellowCursor 4
-#define kSquareCursor 5
-#define kTriangleCursor 6
-#define kCircleCursor 7
-#define kCrossCursor 8
-
 #define kBoardOriginX 45
 #define kBoardOriginY 100
 
@@ -93,26 +84,8 @@
     
 }
 
-- (void)createBoard {
-    // Create the board
-    boardRect = CGRectMake(kBoardOriginX, kBoardOriginY, 280, 230);
-      UIView *theBoardView = [[UIView alloc] initWithFrame:boardRect];
-    
-    for (BoardCell *theCell in boardArray) {
-        
-        UIView *theCellView = [[UIView alloc] initWithFrame:theCell.rect];
-        [theCellView setBackgroundColor:[UIColor lightGrayColor]];
-        [theBoardView addSubview:theCellView]; 
-        [theCellView release];
-        
-    }
-    
-    boardView = theBoardView;
+- (void)drawToolbar {
 
-    
-    [self.view addSubview:boardView];
-    [theBoardView release];
-    
     // Add toolbar
     toolbarRect = CGRectMake(20, 20, 280, 35);
     UIView *toolbarView = [[UIView alloc] initWithFrame:toolbarRect];
@@ -127,118 +100,114 @@
 #pragma mark - 
 #pragma mark Placement methods
 
--(NSArray *)generateRandomPlacementsForShapes:(int)numberOfShapes {
+-(void)generateRandomPlacementsForShapes:(int)numberOfShapes {
     
-    // Make a copy of the board array, call it placementArray
-    NSArray *boardCopy = [boardArray copy];
-    NSMutableArray *internalPlacements = [NSMutableArray arrayWithArray:boardCopy];
-    [boardCopy release];
+    // Reset the contents of the board array
+    for (BoardCell *theBoardCell in boardArray) {
+        
+        theBoardCell.shape = 9;
+        theBoardCell.colour = 9;
+        
+    }
+    NSLog(@"===============");
+    NSLog(@"===============");
+
+    // Create an array of cell indexes
+    NSMutableArray *cellIndexes = [[NSMutableArray alloc] initWithObjects:@"11",@"12",@"13",@"21",@"22",@"23",@"31",@"32",@"33", nil];
     
     for (int i = 0; i < numberOfShapes; i++) {
-    
+        
+        // generate a random placement tag
+        int randomIndex = arc4random() % ([cellIndexes count] -1);
+        
+        // Get the randomly chosen cell index
+        int randomTag = [[cellIndexes objectAtIndex:randomIndex] intValue];
+        
+        // Remove that object from the cellIndexes array
+        [cellIndexes removeObjectAtIndex:randomIndex];
+        
         // Generate a random shape
         int randomShape = (arc4random() % 3) + 1;
         int randomColor = (arc4random() % 3) + 1;
-
-        // Generate a random placement tag
-        int randomXLoc = (arc4random() % 3) + 1;
-        int randomYLoc = (arc4random() % 3) + 1;
-        int randomTag = (randomYLoc * 10) + randomXLoc;
         
-        NSLog(@"Random placement: col:%d row:%d", randomXLoc, randomYLoc);
+        NSLog(@"======");
+        NSLog(@"Random placement: %d", randomTag);
         NSLog(@"Shape: %d-%d", randomShape, randomColor);
         
         // Find the index of the BoardCell in placementArray with a matching tag
         NSUInteger index;
-        index = [internalPlacements indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        index = [boardArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             BoardCell *thisBoardCell = (BoardCell *)obj;
             return (thisBoardCell.tag == randomTag);
         }];
         
         // Get that boardCell and updated with the random shape values
-        BoardCell *theBoardCell = [internalPlacements objectAtIndex:index];
+        BoardCell *theBoardCell = [boardArray objectAtIndex:index];
         theBoardCell.shape = randomShape;
         theBoardCell.colour = randomColor;
 
     }
     
-    // return the placementArray
-    NSArray *returnArray = [NSArray arrayWithArray:internalPlacements];
-    return returnArray;
     
 }
 
-- (void)placeOnBoardFromArrayOfShapes:(NSArray *)shapePlacements  {
-    // Put shapes on the board
+- (void)placeShapesOnBoard {
+
+    BoardCell *bc11 = [boardArray objectAtIndex:0];
+    BoardCell *bc12 = [boardArray objectAtIndex:1];
+    BoardCell *bc13 = [boardArray objectAtIndex:2];
+    BoardCell *bc21 = [boardArray objectAtIndex:3];
+    BoardCell *bc22 = [boardArray objectAtIndex:4];
+    BoardCell *bc23 = [boardArray objectAtIndex:5];
+    BoardCell *bc31 = [boardArray objectAtIndex:6];
+    BoardCell *bc32 = [boardArray objectAtIndex:7];
+    BoardCell *bc33 = [boardArray objectAtIndex:8];
     
-    // Iterate across the shapePlacements array
+    // Create image string
+    NSString *imageName11 = [NSString stringWithFormat:@"%d%d", bc11.colour, bc11.shape];
+    NSString *imageName12 = [NSString stringWithFormat:@"%d%d", bc12.colour, bc12.shape];
+    NSString *imageName13 = [NSString stringWithFormat:@"%d%d", bc13.colour, bc13.shape];
+    NSString *imageName21 = [NSString stringWithFormat:@"%d%d", bc21.colour, bc21.shape];
+    NSString *imageName22 = [NSString stringWithFormat:@"%d%d", bc22.colour, bc22.shape];
+    NSString *imageName23 = [NSString stringWithFormat:@"%d%d", bc23.colour, bc23.shape];
+    NSString *imageName31 = [NSString stringWithFormat:@"%d%d", bc31.colour, bc31.shape];
+    NSString *imageName32 = [NSString stringWithFormat:@"%d%d", bc32.colour, bc32.shape];
+    NSString *imageName33 = [NSString stringWithFormat:@"%d%d", bc33.colour, bc33.shape];
     
-    // for each cell -  extract the colour
-    //                  extract the shape
-    //                  extract the location
+    // Update UIViews
+    image11.image = [UIImage imageNamed:imageName11];
+    image12.image = [UIImage imageNamed:imageName12];
+    image13.image = [UIImage imageNamed:imageName13];
+    image21.image = [UIImage imageNamed:imageName21];
+    image22.image = [UIImage imageNamed:imageName22];
+    image23.image = [UIImage imageNamed:imageName23];
+    image31.image = [UIImage imageNamed:imageName31];
+    image32.image = [UIImage imageNamed:imageName32];
+    image33.image = [UIImage imageNamed:imageName33];
     
-    //  if the color and shape are BOTH non-zero, then
-    //  create the image and place it at the location
-    
-    for (BoardCell *theBoardCell in shapePlacements) {
-        
-        // Extract the colour, shape and location
-        int cellColor = theBoardCell.colour;
-        int cellShape = theBoardCell.shape;
-        
-        CGRect cellRect = theBoardCell.rect;
-        float cellRectX = cellRect.origin.x;
-        float cellRectY = cellRect.origin.y;
-        float cellRectH = cellRect.size.height;
-        float cellRectW = cellRect.size.width;
-        
-        // Create the cellShape int
-        // shape is MSB, colour is LSB
-        int cellCode = (cellShape * 10) + cellColor;
-        
-        // If this is zero, there's nothing placed
-        if (cellCode != 0) {
-            
-            // Create the image name
-            NSString *imageName = [NSString stringWithFormat:@"%d", cellCode];
-            
-            // Get the image
-            UIImageView *cellImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-            
-            // Create a view, insert the image and place it in the view
-            UIView *shapeView = [[UIView alloc] initWithFrame:CGRectMake(cellRectX + kBoardOriginX, cellRectY + kBoardOriginY, cellRectW, cellRectH)];
-            [shapeView addSubview:cellImage];
-            [cellImage release];
-            
-            // Place in main view
-            [self.view addSubview:shapeView];
-            [shapeView release];
-            
-        }
-    }
 }
 
 #pragma mark -
 #pragma mark Game methods
 
--(void)startRound {    
+-(void)setupBoard {    
     
     // Create board array
     boardArray = [[self createBoardArray] retain];
     
     // Copy the board array into the answers array
-    NSArray *boardCopy = [boardArray copy];
-    answersArray = [[NSMutableArray arrayWithArray:boardCopy] retain];
-    [boardCopy release];
+    answersArray = [boardArray copy];
     
-    // Draw the board
-    [self createBoard];
+}
+
+-(void)startRound {
     
-    // Create random placements of shapes and put them
-    // into the placementArray
-    placementArray = [self generateRandomPlacementsForShapes:2];
-    [self placeOnBoardFromArrayOfShapes: placementArray];
+    // Generate new placement array
+    [self generateRandomPlacementsForShapes:2];
     
+    // Now that the board is clean, place the new shapes
+    [self placeShapesOnBoard];
+   
 }
     
 #pragma mark -
@@ -256,35 +225,43 @@
         case (0):
             // Create cursor & add to view
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueCursor"]];
-            cursorTool = kBlueCursor;
+            cursorColour = 1;
+            cursorShape = 0;
             break;
         case (1):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCursor"]];
-            cursorTool = kGreenCursor;
+            cursorColour = 2;
+            cursorShape = 0;
             break;
         case (2):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redCursor"]];
-            cursorTool = kRedCursor;
+            cursorColour = 3;
+            cursorShape = 0;
             break;
         case (3):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yellowCursor"]];
-            cursorTool = kYellowCursor;
+            cursorColour = 4;
+            cursorShape = 0;
             break;
         case (4):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"squareCursor"]];
-            cursorTool = kSquareCursor;
+            cursorColour = 0;
+            cursorShape = 1;
             break;
         case (5):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"triangleCursor"]];
-            cursorTool = kTriangleCursor;
+            cursorColour = 0;
+            cursorShape = 2;
             break;
         case (6):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"circleCursor"]];
-            cursorTool = kCircleCursor;
+            cursorColour = 0;
+            cursorShape = 3;
             break;
         case (7):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"crossCursor"]];
-            cursorTool = kCrossCursor;
+            cursorColour = 0;
+            cursorShape = 4;
             break;
             
         default:
@@ -352,7 +329,40 @@
     NSLog(@"BoardCell.color = %d", theBoardCell.colour);
     NSLog(@"BoardCell.shape = %d", theBoardCell.shape);
     
-    // Figure out how to react
+    int boardColor = theBoardCell.colour;
+    int boardShape = theBoardCell.shape;
+    
+    // CASE ONE - TOOL DRAG IS IN PROGRESS
+    if (touchStartedInToolbar) {
+  
+        // If the cursorColour value isn't 0, reset the cell's colour
+        if (cursorColour != 0) {
+            
+            // Create the new display shape name string
+            NSString *newShapeName = [NSString stringWithFormat:@"%d%d", cursorColour, boardShape];
+            
+            // Create the new image
+            UIImageView *newShape = [[UIImageView alloc] initWithFrame:theBoardCell.rect];
+            
+            // Get a reference to that cell
+            UIView *cellToChange = [self.view viewWithTag:theBoardCell.tag];
+            
+            // Set the image
+            
+             
+            
+            
+            
+        }
+        
+        // If the cursorShape\s value isn't 0. reset the cell's shape
+        
+    }
+    
+    
+    
+    
+    
     [cursorImage removeFromSuperview];
     
 }
@@ -466,7 +476,9 @@
     turn = 1;
     
     // Set up board
-    [self startRound];
+    [self drawToolbar];
+    
+    [self setupBoard];
     
 }
 
@@ -487,5 +499,8 @@
     
     [self startRound];
     
+}
+- (void)dealloc {
+    [super dealloc];
 }
 @end

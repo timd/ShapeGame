@@ -7,6 +7,7 @@
 //
 
 #import "NewShapeGameAppDelegate.h"
+#import "DCIntrospect.h"
 
 #import "NewShapeGameViewController.h"
 
@@ -21,6 +22,12 @@
      
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+
+    // always call after makeKeyAndDisplay.
+#ifdef TARGET_IPHONE_SIMULATOR
+    [[DCIntrospect sharedIntrospector] start];
+#endif
+    
     return YES;
 }
 
