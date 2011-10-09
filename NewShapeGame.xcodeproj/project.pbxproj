@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22EF3A1F14416F7D007A1BD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A1E14416F7C007A1BD5 /* UIKit.framework */; };
+		22EF3A2114416F7D007A1BD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A2014416F7D007A1BD5 /* Foundation.framework */; };
+		22EF3A2314416F7D007A1BD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A2214416F7D007A1BD5 /* CoreGraphics.framework */; };
+		22EF3A2914416F7D007A1BD5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22EF3A2714416F7D007A1BD5 /* InfoPlist.strings */; };
+		22EF3A2B14416F7D007A1BD5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EF3A2A14416F7D007A1BD5 /* main.m */; };
+		22EF3A2F14416F7D007A1BD5 /* NewShapeGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EF3A2E14416F7D007A1BD5 /* NewShapeGameAppDelegate.m */; };
+		22EF3A3214416F7D007A1BD5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EF3A3014416F7D007A1BD5 /* MainWindow.xib */; };
+		22EF3A3514416F7D007A1BD5 /* NewShapeGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EF3A3414416F7D007A1BD5 /* NewShapeGameViewController.m */; };
+		22EF3A3814416F7D007A1BD5 /* NewShapeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22EF3A3614416F7D007A1BD5 /* NewShapeGameViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewShapeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22EF3A1E14416F7C007A1BD5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		22EF3A2014416F7D007A1BD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		22EF3A2214416F7D007A1BD5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		22EF3A2614416F7D007A1BD5 /* NewShapeGame-Info.plist */ = {isa = PBXFileReference; path = "NewShapeGame-Info.plist"; sourceTree = "<group>"; };
+		22EF3A2814416F7D007A1BD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22EF3A2A14416F7D007A1BD5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22EF3A2C14416F7D007A1BD5 /* NewShapeGame-Prefix.pch */ = {isa = PBXFileReference; path = "NewShapeGame-Prefix.pch"; sourceTree = "<group>"; };
+		22EF3A2D14416F7D007A1BD5 /* NewShapeGameAppDelegate.h */ = {isa = PBXFileReference; path = NewShapeGameAppDelegate.h; sourceTree = "<group>"; };
+		22EF3A2E14416F7D007A1BD5 /* NewShapeGameAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewShapeGameAppDelegate.m; sourceTree = "<group>"; };
+		22EF3A3114416F7D007A1BD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		22EF3A3314416F7D007A1BD5 /* NewShapeGameViewController.h */ = {isa = PBXFileReference; path = NewShapeGameViewController.h; sourceTree = "<group>"; };
+		22EF3A3414416F7D007A1BD5 /* NewShapeGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewShapeGameViewController.m; sourceTree = "<group>"; };
+		22EF3A3714416F7D007A1BD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewShapeGameViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22EF3A1714416F7C007A1BD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EF3A1F14416F7D007A1BD5 /* UIKit.framework in Frameworks */,
+				22EF3A2114416F7D007A1BD5 /* Foundation.framework in Frameworks */,
+				22EF3A2314416F7D007A1BD5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		22EF3A0F14416F7C007A1BD5 = {
+			isa = PBXGroup;
+			children = (
+				22EF3A2414416F7D007A1BD5 /* NewShapeGame */,
+				22EF3A1D14416F7C007A1BD5 /* Frameworks */,
+				22EF3A1B14416F7C007A1BD5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22EF3A1B14416F7C007A1BD5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22EF3A1D14416F7C007A1BD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22EF3A1E14416F7C007A1BD5 /* UIKit.framework */,
+				22EF3A2014416F7D007A1BD5 /* Foundation.framework */,
+				22EF3A2214416F7D007A1BD5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22EF3A2414416F7D007A1BD5 /* NewShapeGame */ = {
+			isa = PBXGroup;
+			children = (
+				22EF3A2D14416F7D007A1BD5 /* NewShapeGameAppDelegate.h */,
+				22EF3A2E14416F7D007A1BD5 /* NewShapeGameAppDelegate.m */,
+				22EF3A3014416F7D007A1BD5 /* MainWindow.xib */,
+				22EF3A3314416F7D007A1BD5 /* NewShapeGameViewController.h */,
+				22EF3A3414416F7D007A1BD5 /* NewShapeGameViewController.m */,
+				22EF3A3614416F7D007A1BD5 /* NewShapeGameViewController.xib */,
+				22EF3A2514416F7D007A1BD5 /* Supporting Files */,
+			);
+			path = NewShapeGame;
+			sourceTree = "<group>";
+		};
+		22EF3A2514416F7D007A1BD5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22EF3A2614416F7D007A1BD5 /* NewShapeGame-Info.plist */,
+				22EF3A2714416F7D007A1BD5 /* InfoPlist.strings */,
+				22EF3A2A14416F7D007A1BD5 /* main.m */,
+				22EF3A2C14416F7D007A1BD5 /* NewShapeGame-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22EF3A1914416F7C007A1BD5 /* NewShapeGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "NewShapeGame" */;
+			buildPhases = (
+				22EF3A1614416F7C007A1BD5 /* Sources */,
+				22EF3A1714416F7C007A1BD5 /* Frameworks */,
+				22EF3A1814416F7C007A1BD5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewShapeGame;
+			productName = NewShapeGame;
+			productReference = 22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22EF3A1114416F7C007A1BD5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Charismatic Megafauna Ltd";
+			};
+			buildConfigurationList = 22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "NewShapeGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 22EF3A0F14416F7C007A1BD5;
+			productRefGroup = 22EF3A1B14416F7C007A1BD5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22EF3A1914416F7C007A1BD5 /* NewShapeGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22EF3A1814416F7C007A1BD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EF3A2914416F7D007A1BD5 /* InfoPlist.strings in Resources */,
+				22EF3A3214416F7D007A1BD5 /* MainWindow.xib in Resources */,
+				22EF3A3814416F7D007A1BD5 /* NewShapeGameViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22EF3A1614416F7C007A1BD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EF3A2B14416F7D007A1BD5 /* main.m in Sources */,
+				22EF3A2F14416F7D007A1BD5 /* NewShapeGameAppDelegate.m in Sources */,
+				22EF3A3514416F7D007A1BD5 /* NewShapeGameViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		22EF3A2714416F7D007A1BD5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22EF3A2814416F7D007A1BD5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		22EF3A3014416F7D007A1BD5 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22EF3A3114416F7D007A1BD5 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		22EF3A3614416F7D007A1BD5 /* NewShapeGameViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22EF3A3714416F7D007A1BD5 /* en */,
+			);
+			name = NewShapeGameViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		22EF3A3914416F7D007A1BD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		22EF3A3A14416F7D007A1BD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		22EF3A3C14416F7D007A1BD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NewShapeGame/NewShapeGame-Prefix.pch";
+				INFOPLIST_FILE = "NewShapeGame/NewShapeGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		22EF3A3D14416F7D007A1BD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NewShapeGame/NewShapeGame-Prefix.pch";
+				INFOPLIST_FILE = "NewShapeGame/NewShapeGame-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "NewShapeGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22EF3A3914416F7D007A1BD5 /* Debug */,
+				22EF3A3A14416F7D007A1BD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "NewShapeGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22EF3A3C14416F7D007A1BD5 /* Debug */,
+				22EF3A3D14416F7D007A1BD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22EF3A1114416F7C007A1BD5 /* Project object */;
+}
