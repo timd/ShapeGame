@@ -16,10 +16,18 @@
     int level;
     int turn;
     
-    NSArray *boardArray;
-    NSMutableArray *answersArray;
+    NSArray *boardArray;                // "Master" board - holds empty cells
+    NSArray *placementArray;     // copy of master board, with randomly placed shapes
+    NSMutableArray *answersArray;       // holds the player's answers
     
     UIView *boardView;
+    CGRect boardRect;
+    CGRect toolbarRect;
+    
+    UIImageView *cursorImage;
+    int cursorTool;
+    BOOL touchStartedInToolbar;
+    
     
 }
 - (IBAction)refreshBoard:(id)sender;
