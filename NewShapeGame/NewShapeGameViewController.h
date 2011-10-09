@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewShapeGameViewController : UIViewController
+@interface NewShapeGameViewController : UIViewController {
+    
+    int points;
+    int wins;
+    int lives;
+    int level;
+    int turn;
+    
+    NSArray *boardArray;
+    NSMutableArray *answersArray;
+    
+    UIView *boardView;
+    
+}
+- (IBAction)refreshBoard:(id)sender;
 
 @end
