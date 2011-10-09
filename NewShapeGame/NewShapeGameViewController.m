@@ -15,6 +15,9 @@
 
 @implementation NewShapeGameViewController
 
+@synthesize boardArray;
+@synthesize boardState;
+@synthesize answersArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,20 +100,58 @@
 
 }
 
+-(void)resetBoard {
+    
+    // Reset the contents of the board array
+    for (BoardCell *theBoardCell in self.boardArray) {
+        
+        theBoardCell.shape = 0;
+        theBoardCell.colour = 0;
+        
+    }
+    
+    // Reset the contents of the board array
+    for (BoardCell *theBoardCell in self.answersArray) {
+        
+        theBoardCell.shape = 0;
+        theBoardCell.colour = 0;
+        
+    }
+    
+    [self placeShapesOnBoardWith:self.boardArray]; 
+    
+}
+
+-(void)clearBoard {
+ 
+    // Create image string
+    NSString *blankImage = [NSString stringWithFormat:@"00"];
+    
+    // Update UIViews
+    image11.image = [UIImage imageNamed:blankImage];
+    image12.image = [UIImage imageNamed:blankImage];
+    image13.image = [UIImage imageNamed:blankImage];
+    image21.image = [UIImage imageNamed:blankImage];
+    image22.image = [UIImage imageNamed:blankImage];
+    image23.image = [UIImage imageNamed:blankImage];
+    image31.image = [UIImage imageNamed:blankImage];
+    image32.image = [UIImage imageNamed:blankImage];
+    image33.image = [UIImage imageNamed:blankImage];
+    
+}
+
 #pragma mark - 
 #pragma mark Placement methods
 
 -(void)generateRandomPlacementsForShapes:(int)numberOfShapes {
     
     // Reset the contents of the board array
-    for (BoardCell *theBoardCell in boardArray) {
+    for (BoardCell *theBoardCell in self.boardArray) {
         
-        theBoardCell.shape = 9;
-        theBoardCell.colour = 9;
+        theBoardCell.shape = 0;
+        theBoardCell.colour = 0;
         
     }
-    NSLog(@"===============");
-    NSLog(@"===============");
 
     // Create an array of cell indexes
     NSMutableArray *cellIndexes = [[NSMutableArray alloc] initWithObjects:@"11",@"12",@"13",@"21",@"22",@"23",@"31",@"32",@"33", nil];
@@ -130,38 +171,47 @@
         int randomShape = (arc4random() % 3) + 1;
         int randomColor = (arc4random() % 3) + 1;
         
-        NSLog(@"======");
-        NSLog(@"Random placement: %d", randomTag);
-        NSLog(@"Shape: %d-%d", randomShape, randomColor);
-        
         // Find the index of the BoardCell in placementArray with a matching tag
         NSUInteger index;
-        index = [boardArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        index = [self.boardArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             BoardCell *thisBoardCell = (BoardCell *)obj;
             return (thisBoardCell.tag == randomTag);
         }];
         
         // Get that boardCell and updated with the random shape values
-        BoardCell *theBoardCell = [boardArray objectAtIndex:index];
+        BoardCell *theBoardCell = [self.boardArray objectAtIndex:index];
         theBoardCell.shape = randomShape;
         theBoardCell.colour = randomColor;
 
+        // Update the boardState array with the same content
+        
+        // Find the index of the BoardCell in placementArray with a matching tag
+        index = [self.boardState indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            BoardCell *thisBoardCell = (BoardCell *)obj;
+            return (thisBoardCell.tag == randomTag);
+        }];
+        
+        // Get that boardCell and updated with the random shape values
+        theBoardCell = [self.boardState objectAtIndex:index];
+        theBoardCell.shape = randomShape;
+        theBoardCell.colour = randomColor;
+        
     }
     
     
 }
 
-- (void)placeShapesOnBoard {
+- (void)placeShapesOnBoardWith:(NSArray *)theArray {
 
-    BoardCell *bc11 = [boardArray objectAtIndex:0];
-    BoardCell *bc12 = [boardArray objectAtIndex:1];
-    BoardCell *bc13 = [boardArray objectAtIndex:2];
-    BoardCell *bc21 = [boardArray objectAtIndex:3];
-    BoardCell *bc22 = [boardArray objectAtIndex:4];
-    BoardCell *bc23 = [boardArray objectAtIndex:5];
-    BoardCell *bc31 = [boardArray objectAtIndex:6];
-    BoardCell *bc32 = [boardArray objectAtIndex:7];
-    BoardCell *bc33 = [boardArray objectAtIndex:8];
+    BoardCell *bc11 = [theArray objectAtIndex:0];
+    BoardCell *bc12 = [theArray objectAtIndex:1];
+    BoardCell *bc13 = [theArray objectAtIndex:2];
+    BoardCell *bc21 = [theArray objectAtIndex:3];
+    BoardCell *bc22 = [theArray objectAtIndex:4];
+    BoardCell *bc23 = [theArray objectAtIndex:5];
+    BoardCell *bc31 = [theArray objectAtIndex:6];
+    BoardCell *bc32 = [theArray objectAtIndex:7];
+    BoardCell *bc33 = [theArray objectAtIndex:8];
     
     // Create image string
     NSString *imageName11 = [NSString stringWithFormat:@"%d%d", bc11.colour, bc11.shape];
@@ -193,22 +243,88 @@
 -(void)setupBoard {    
     
     // Create board array
-    boardArray = [[self createBoardArray] retain];
+    self.boardArray = [self createBoardArray];
+    self.answersArray = [NSMutableArray arrayWithArray:[self createBoardArray]];
     
-    // Copy the board array into the answers array
-    answersArray = [boardArray copy];
+    // Set the boardRect
+    boardRect = CGRectMake(45, 93, 230, 230);
     
 }
 
 -(void)startRound {
     
+    [blankBoard setAlpha:0];
+    [guessButton setHidden:YES];
+    
     // Generate new placement array
     [self generateRandomPlacementsForShapes:2];
     
     // Now that the board is clean, place the new shapes
-    [self placeShapesOnBoard];
+    [self placeShapesOnBoardWith:self.boardArray];
+    
+    // Wait for a short while
+    
+    // Display blank grid
+    [UIView animateWithDuration:0.5 delay:2.0 options:UIViewAnimationCurveEaseInOut animations:^(void) {
+        
+        // hide the board
+        [blankBoard setAlpha:1];
+        
+    } completion:^(BOOL finished) {
+        
+        // clear the board
+        [self clearBoard];
+        
+        [blankBoard setAlpha:0];
+        
+        [guessButton setHidden:NO];
+        
+    }];
+    
+    // wait for answers
    
 }
+
+- (IBAction)guessButtonTapped:(id)sender {
+    
+    [self checkIfCorrectAnswer];
+    
+    [self startRound];
+    
+}
+
+-(void)checkIfCorrectAnswer {
+    
+    NSLog(@"******************************\n\n");
+
+    BOOL gameLost = NO;
+    
+    // Iterate across the two arrays and compare the answer states
+    for (int i=0; i < 9; i++) {
+        
+        BoardCell *boardCell = [self.boardArray objectAtIndex:i];
+        BoardCell *answerCell = [self.answersArray objectAtIndex:i];
+
+        NSLog(@"B: color:%d shape:%d", boardCell.colour, boardCell.shape);
+        NSLog(@"A: color:%d shape:%d", answerCell.colour, answerCell.shape);
+        NSLog(@"======");
+        
+        if ((answerCell.colour != boardCell.colour) || (answerCell.shape != boardCell.shape)) {
+            gameLost = YES;
+        }
+        
+        if (gameLost) {
+            NSLog(@"GAME LOST");
+        } else {
+            NSLog(@"GAME WON");
+        }
+        
+    }
+    
+    [self resetBoard];
+    
+}
+
     
 #pragma mark -
 #pragma mark Touch handling methods
@@ -225,23 +341,23 @@
         case (0):
             // Create cursor & add to view
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueCursor"]];
-            cursorColour = 1;
             cursorShape = 0;
+            cursorColour = 1;
             break;
         case (1):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCursor"]];
-            cursorColour = 2;
             cursorShape = 0;
+            cursorColour = 2;
             break;
         case (2):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redCursor"]];
-            cursorColour = 3;
             cursorShape = 0;
+            cursorColour = 3;
             break;
         case (3):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yellowCursor"]];
-            cursorColour = 4;
             cursorShape = 0;
+            cursorColour = 4;
             break;
         case (4):
             cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"squareCursor"]];
@@ -318,50 +434,62 @@
     
     // First, get the BoardCell from the correct location in the board
     NSUInteger index;
-    index = [boardArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+    index = [self.answersArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         BoardCell *theBoardCell = (BoardCell *)obj;
         return (theBoardCell.tag == theTag);
     }];
     
-    BoardCell *theBoardCell = [boardArray objectAtIndex:index];
+    BoardCell *theBoardCell = [self.answersArray objectAtIndex:index];
     
     // Figure out what's in the cell
+    NSLog(@"Tag = %d", theTag);
     NSLog(@"BoardCell.color = %d", theBoardCell.colour);
     NSLog(@"BoardCell.shape = %d", theBoardCell.shape);
     
-    int boardColor = theBoardCell.colour;
-    int boardShape = theBoardCell.shape;
-    
     // CASE ONE - TOOL DRAG IS IN PROGRESS
     if (touchStartedInToolbar) {
-  
-        // If the cursorColour value isn't 0, reset the cell's colour
-        if (cursorColour != 0) {
-            
-            // Create the new display shape name string
-            NSString *newShapeName = [NSString stringWithFormat:@"%d%d", cursorColour, boardShape];
-            
-            // Create the new image
-            UIImageView *newShape = [[UIImageView alloc] initWithFrame:theBoardCell.rect];
-            
-            // Get a reference to that cell
-            UIView *cellToChange = [self.view viewWithTag:theBoardCell.tag];
-            
-            // Set the image
-            
-             
-            
-            
-            
+        
+        // Update the cell's current colour
+        if (cursorColour == 0) {
+            // Only change shape
+            theBoardCell.shape = cursorShape;
         }
         
-        // If the cursorShape\s value isn't 0. reset the cell's shape
+        if (cursorShape == 0) {
+            // Only change color
+            theBoardCell.colour = cursorColour;
+        }
+        
+        touchStartedInToolbar = NO;
+        cursorColour = 0;
+        cursorShape = 0;
+        
+        
+    } else {
+        
+        // Touch started elsewhere, just clear the cell
+        theBoardCell.shape = 0;
+        theBoardCell.colour = 0;
         
     }
     
+    // Update the answers array
+    BoardCell *theAnswersCell = [self.answersArray objectAtIndex:index];
     
+    NSLog(@"theAnswerCell.color = %d", theAnswersCell.colour);
+    NSLog(@"theAnswerCell.shape = %d", theAnswersCell.shape);
     
+    [theAnswersCell setColour:theBoardCell.colour];
+    [theAnswersCell setShape:theBoardCell.shape];
+
+    NSLog(@"theBoardCell:");
+    NSLog(@"color = %d", theBoardCell.colour);
+    NSLog(@"shape = %d", theBoardCell.shape);
+    NSLog(@"theAnswersCell:");
+    NSLog(@"New color = %d", theAnswersCell.colour);
+    NSLog(@"New shape = %d", theAnswersCell.shape);
     
+    [self placeShapesOnBoardWith:self.answersArray];
     
     [cursorImage removeFromSuperview];
     
@@ -480,14 +608,10 @@
     
     [self setupBoard];
     
+    [self startRound];
+    
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -500,7 +624,23 @@
     [self startRound];
     
 }
-- (void)dealloc {
-    [super dealloc];
-}
+
+
+ - (void)dealloc {
+     [boardBackground release];
+     [blankBoard release];
+     [guessButton release];
+     [super dealloc];
+ }
+
+ - (void)viewDidUnload {
+     [boardBackground release];
+     boardBackground = nil;
+     [blankBoard release];
+     blankBoard = nil;
+     [guessButton release];
+     guessButton = nil;
+     [super viewDidUnload];
+ }
+
 @end

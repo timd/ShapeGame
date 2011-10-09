@@ -16,10 +16,7 @@
     int level;
     int turn;
     
-    NSArray *boardArray;                // "Master" board - holds empty cells
     NSArray *placementArray;            // copy of master board, with randomly placed shapes
-    NSArray *previousBoardState;        //  holds the shape placements from the previous turn
-    NSMutableArray *answersArray;       // holds the player's answers
     
     UIView *boardView;
     CGRect boardRect;
@@ -34,7 +31,12 @@
     IBOutlet UIImageView *image31;
     IBOutlet UIImageView *image32;
     IBOutlet UIImageView *image33;
-        
+
+    IBOutlet UIImageView *boardBackground;
+    IBOutlet UIImageView *blankBoard;
+
+    IBOutlet UIButton *guessButton;
+    
     UIImageView *cursorImage;
     int cursorShape;
     int cursorColour;
@@ -42,6 +44,16 @@
     
     
 }
+
+@property (nonatomic, retain) NSArray *boardArray;
+@property (nonatomic, retain) NSArray *boardState;
+@property (nonatomic, retain) NSMutableArray *answersArray;
+
 - (IBAction)refreshBoard:(id)sender;
+- (IBAction)guessButtonTapped:(id)sender;
+
+- (void)placeShapesOnBoardWith:(NSArray *)theArray;
+
+-(void)checkIfCorrectAnswer;
 
 @end

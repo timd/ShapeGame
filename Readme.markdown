@@ -21,6 +21,8 @@ http://adoptioncurve.net/foodhospital
 ### Completed:
 - created grid
 - random placement of n shapes
+- dragging of colours & shapes
+- checking for win/lose on turn
 
 ### In progress:
 
