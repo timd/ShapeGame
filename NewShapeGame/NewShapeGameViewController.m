@@ -144,8 +144,6 @@
         // Get the cell with the corresponding tag from the boardArray
         NSUInteger index;
         
-        NSLog(@"tag = %d", shapeCell.tag);
-        
         // Find the index and retrieve the cell
         index = [boardArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             BoardCell *boardCell = (BoardCell *)obj;
