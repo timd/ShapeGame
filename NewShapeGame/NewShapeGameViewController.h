@@ -10,11 +10,11 @@
 
 @interface NewShapeGameViewController : UIViewController {
     
-    int points;
-    int wins;
-    int lives;
-    int level;
-    int turn;
+    int points;     // score
+    int lives;      // lives - 3 to lose
+    int level;      // number of shapes per play
+    int turn;       // number of plays on this level - after 3, level increases
+    int shapes;     // number of shapes on the board
     
     NSArray *placementArray;            // copy of master board, with randomly placed shapes
     
@@ -42,6 +42,8 @@
     int cursorColour;
     BOOL touchStartedInToolbar;
     
+    IBOutlet UILabel *scoreLabel;
+    IBOutlet UILabel *livesLabel;
     
 }
 
@@ -55,5 +57,7 @@
 - (void)placeShapesOnBoardWith:(NSArray *)theArray;
 
 -(void)checkIfCorrectAnswer;
+-(void)shouldGameContinue;
+-(void)endGame;
 
 @end

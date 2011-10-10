@@ -183,14 +183,14 @@
 		2273775C1441F1AF002EE8B9 /* blankBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blankBoard@2x.png"; sourceTree = "<group>"; };
 		227377641441F695002EE8B9 /* guessButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guessButton.png; sourceTree = "<group>"; };
 		227377651441F695002EE8B9 /* guessButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guessButton@2x.png"; sourceTree = "<group>"; };
-		22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewShapeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22EF3A1A14416F7C007A1BD5 /* shapegame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shapegame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF3A1E14416F7C007A1BD5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22EF3A2014416F7D007A1BD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22EF3A2214416F7D007A1BD5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		22EF3A2614416F7D007A1BD5 /* NewShapeGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NewShapeGame-Info.plist"; sourceTree = "<group>"; };
+		22EF3A2614416F7D007A1BD5 /* ShapeGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShapeGame-Info.plist"; sourceTree = "<group>"; };
 		22EF3A2814416F7D007A1BD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		22EF3A2A14416F7D007A1BD5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		22EF3A2C14416F7D007A1BD5 /* NewShapeGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewShapeGame-Prefix.pch"; sourceTree = "<group>"; };
+		22EF3A2C14416F7D007A1BD5 /* ShapeGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShapeGame-Prefix.pch"; sourceTree = "<group>"; };
 		22EF3A2D14416F7D007A1BD5 /* NewShapeGameAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewShapeGameAppDelegate.h; sourceTree = "<group>"; };
 		22EF3A2E14416F7D007A1BD5 /* NewShapeGameAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewShapeGameAppDelegate.m; sourceTree = "<group>"; };
 		22EF3A3114416F7D007A1BD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		22EF3A1B14416F7C007A1BD5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */,
+				22EF3A1A14416F7C007A1BD5 /* shapegame.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -323,10 +323,10 @@
 		22EF3A2514416F7D007A1BD5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				22EF3A2614416F7D007A1BD5 /* NewShapeGame-Info.plist */,
+				22EF3A2614416F7D007A1BD5 /* ShapeGame-Info.plist */,
 				22EF3A2714416F7D007A1BD5 /* InfoPlist.strings */,
 				22EF3A2A14416F7D007A1BD5 /* main.m */,
-				22EF3A2C14416F7D007A1BD5 /* NewShapeGame-Prefix.pch */,
+				22EF3A2C14416F7D007A1BD5 /* ShapeGame-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -437,9 +437,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22EF3A1914416F7C007A1BD5 /* NewShapeGame */ = {
+		22EF3A1914416F7C007A1BD5 /* ShapeGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "NewShapeGame" */;
+			buildConfigurationList = 22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "ShapeGame" */;
 			buildPhases = (
 				22EF3A1614416F7C007A1BD5 /* Sources */,
 				22EF3A1714416F7C007A1BD5 /* Frameworks */,
@@ -449,9 +449,9 @@
 			);
 			dependencies = (
 			);
-			name = NewShapeGame;
+			name = ShapeGame;
 			productName = NewShapeGame;
-			productReference = 22EF3A1A14416F7C007A1BD5 /* NewShapeGame.app */;
+			productReference = 22EF3A1A14416F7C007A1BD5 /* shapegame.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -462,7 +462,7 @@
 			attributes = {
 				ORGANIZATIONNAME = "Charismatic Megafauna Ltd";
 			};
-			buildConfigurationList = 22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "NewShapeGame" */;
+			buildConfigurationList = 22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "ShapeGame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -474,7 +474,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				22EF3A1914416F7C007A1BD5 /* NewShapeGame */,
+				22EF3A1914416F7C007A1BD5 /* ShapeGame */,
 			);
 		};
 /* End PBXProject section */
@@ -612,6 +612,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2273776814420CF3002EE8B9 /* Ad-Hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tim Duckett";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBCFA123-19DE-4178-B46F-931971857393";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad-Hoc distribution";
+		};
+		2273776914420CF3002EE8B9 /* Ad-Hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NewShapeGame/ShapeGame-Prefix.pch";
+				INFOPLIST_FILE = "NewShapeGame/ShapeGame-Info.plist";
+				PRODUCT_NAME = shapegame;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad-Hoc distribution";
+		};
 		22EF3A3914416F7D007A1BD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -659,9 +690,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NewShapeGame/NewShapeGame-Prefix.pch";
-				INFOPLIST_FILE = "NewShapeGame/NewShapeGame-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "NewShapeGame/ShapeGame-Prefix.pch";
+				INFOPLIST_FILE = "NewShapeGame/ShapeGame-Info.plist";
+				PRODUCT_NAME = shapegame;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -670,9 +701,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NewShapeGame/NewShapeGame-Prefix.pch";
-				INFOPLIST_FILE = "NewShapeGame/NewShapeGame-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "NewShapeGame/ShapeGame-Prefix.pch";
+				INFOPLIST_FILE = "NewShapeGame/ShapeGame-Info.plist";
+				PRODUCT_NAME = shapegame;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -680,20 +711,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "NewShapeGame" */ = {
+		22EF3A1414416F7C007A1BD5 /* Build configuration list for PBXProject "ShapeGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22EF3A3914416F7D007A1BD5 /* Debug */,
 				22EF3A3A14416F7D007A1BD5 /* Release */,
+				2273776814420CF3002EE8B9 /* Ad-Hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "NewShapeGame" */ = {
+		22EF3A3B14416F7D007A1BD5 /* Build configuration list for PBXNativeTarget "ShapeGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				22EF3A3C14416F7D007A1BD5 /* Debug */,
 				22EF3A3D14416F7D007A1BD5 /* Release */,
+				2273776914420CF3002EE8B9 /* Ad-Hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

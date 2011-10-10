@@ -110,7 +110,7 @@
         
     }
     
-    // Reset the contents of the board array
+    // Reset the contents of the answers array
     for (BoardCell *theBoardCell in self.answersArray) {
         
         theBoardCell.shape = 0;
@@ -249,6 +249,14 @@
     // Set the boardRect
     boardRect = CGRectMake(45, 93, 230, 230);
     
+    // Set initial scores, turns and lives
+    lives = 3;
+    points = 0;
+    turn = 1;
+    
+    scoreLabel.text = [NSString stringWithFormat:@"%d", points];
+    livesLabel.text = [NSString stringWithFormat:@"%d", lives];
+    
 }
 
 -(void)startRound {
@@ -257,7 +265,7 @@
     [guessButton setHidden:YES];
     
     // Generate new placement array
-    [self generateRandomPlacementsForShapes:2];
+    [self generateRandomPlacementsForShapes:shapes];
     
     // Now that the board is clean, place the new shapes
     [self placeShapesOnBoardWith:self.boardArray];
@@ -289,9 +297,10 @@
     
     [self checkIfCorrectAnswer];
     
-    [self startRound];
-    
 }
+
+#pragma mark -
+#pragma mark Game Logic methods
 
 -(void)checkIfCorrectAnswer {
     
@@ -312,19 +321,62 @@
         if ((answerCell.colour != boardCell.colour) || (answerCell.shape != boardCell.shape)) {
             gameLost = YES;
         }
-        
-        if (gameLost) {
-            NSLog(@"GAME LOST");
-        } else {
-            NSLog(@"GAME WON");
-        }
-        
     }
+        
+    if (gameLost) {
+        NSLog(@"GAME LOST");
+        
+        lives--;
+        
+    } else {
+        NSLog(@"GAME WON");
+        
+        points++;
+    }
+        
+    scoreLabel.text = [NSString stringWithFormat:@"%d", points];
+    livesLabel.text = [NSString stringWithFormat:@"%d", lives];
     
-    [self resetBoard];
+    [self shouldGameContinue];
     
 }
 
+-(void)shouldGameContinue {
+    
+    if (lives == 0) {
+        
+        [self endGame];
+        return;
+        
+    }
+
+    // GAME CONTINUES
+    if (turn == 3) {
+        
+        // Increase level until it reaches 9
+        if (level !=9) {
+            level ++;
+            turn = 1;
+            shapes++;
+        }
+    } else {
+        turn++;
+    }
+    
+    [self resetBoard];
+    [self startRound];
+    
+}
+
+-(void)endGame {
+    
+    NSLog(@"Game ended!");
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"You lost!" message:@"You lost the Game" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alertView show];
+    [alertView release];
+    
+}
     
 #pragma mark -
 #pragma mark Touch handling methods
@@ -594,14 +646,12 @@
 {
     [super viewDidLoad];
     
-    [super viewDidLoad];
-    
     // Setup initial values
     points = 0;
-    wins = 0;
     lives = 2;
     level = 1;
     turn = 1;
+    shapes = 1;
     
     // Set up board
     [self drawToolbar];
@@ -630,6 +680,8 @@
      [boardBackground release];
      [blankBoard release];
      [guessButton release];
+     [scoreLabel release];
+     [livesLabel release];
      [super dealloc];
  }
 
@@ -640,6 +692,10 @@
      blankBoard = nil;
      [guessButton release];
      guessButton = nil;
+     [scoreLabel release];
+     scoreLabel = nil;
+     [livesLabel release];
+     livesLabel = nil;
      [super viewDidUnload];
  }
 
