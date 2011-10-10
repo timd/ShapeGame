@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewShapeGameViewController : UIViewController {
+@interface NewShapeGameViewController : UIViewController <UIAlertViewDelegate> {
     
     int points;     // score
     int lives;      // lives - 3 to lose

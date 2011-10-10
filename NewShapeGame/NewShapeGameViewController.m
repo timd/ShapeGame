@@ -299,6 +299,12 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    [self viewDidLoad];
+    
+}
+
 #pragma mark -
 #pragma mark Game Logic methods
 
@@ -372,7 +378,7 @@
     
     NSLog(@"Game ended!");
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"You lost!" message:@"You lost the Game" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"You lost!" message:@"You lost the Game" delegate:self cancelButtonTitle:@"New game" otherButtonTitles: nil];
     [alertView show];
     [alertView release];
     
