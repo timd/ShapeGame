@@ -94,6 +94,8 @@
 		227377671441F695002EE8B9 /* guessButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 227377651441F695002EE8B9 /* guessButton@2x.png */; };
 		22946DD9144589080074C54B /* toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 22946DD7144589080074C54B /* toolbar.png */; };
 		22946DDA144589080074C54B /* toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22946DD8144589080074C54B /* toolbar@2x.png */; };
+		22D9A0A91445A4CE006B4028 /* endMessageImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9A0A71445A4CE006B4028 /* endMessageImage.png */; };
+		22D9A0AA1445A4CE006B4028 /* endMessageImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D9A0A81445A4CE006B4028 /* endMessageImage@2x.png */; };
 		22EF3A1F14416F7D007A1BD5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A1E14416F7C007A1BD5 /* UIKit.framework */; };
 		22EF3A2114416F7D007A1BD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A2014416F7D007A1BD5 /* Foundation.framework */; };
 		22EF3A2314416F7D007A1BD5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EF3A2214416F7D007A1BD5 /* CoreGraphics.framework */; };
@@ -199,6 +201,8 @@
 		227377651441F695002EE8B9 /* guessButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guessButton@2x.png"; sourceTree = "<group>"; };
 		22946DD7144589080074C54B /* toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar.png; sourceTree = "<group>"; };
 		22946DD8144589080074C54B /* toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar@2x.png"; sourceTree = "<group>"; };
+		22D9A0A71445A4CE006B4028 /* endMessageImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endMessageImage.png; sourceTree = "<group>"; };
+		22D9A0A81445A4CE006B4028 /* endMessageImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endMessageImage@2x.png"; sourceTree = "<group>"; };
 		22EF3A1A14416F7C007A1BD5 /* shapegame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shapegame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF3A1E14416F7C007A1BD5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22EF3A2014416F7D007A1BD5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -327,6 +331,8 @@
 		22700763144186D300935396 /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				22D9A0A71445A4CE006B4028 /* endMessageImage.png */,
+				22D9A0A81445A4CE006B4028 /* endMessageImage@2x.png */,
 				22946DD7144589080074C54B /* toolbar.png */,
 				22946DD8144589080074C54B /* toolbar@2x.png */,
 				227377641441F695002EE8B9 /* guessButton.png */,
@@ -641,6 +647,8 @@
 				22373B4C144471B10085B48D /* 44@x2.png in Resources */,
 				22946DD9144589080074C54B /* toolbar.png in Resources */,
 				22946DDA144589080074C54B /* toolbar@2x.png in Resources */,
+				22D9A0A91445A4CE006B4028 /* endMessageImage.png in Resources */,
+				22D9A0AA1445A4CE006B4028 /* endMessageImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,12 +723,12 @@
 		2273776914420CF3002EE8B9 /* Ad-Hoc distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tim Duckett";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewShapeGame/ShapeGame-Prefix.pch";
 				INFOPLIST_FILE = "NewShapeGame/ShapeGame-Info.plist";
 				PRODUCT_NAME = shapegame;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBCFA123-19DE-4178-B46F-931971857393";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad-Hoc distribution";

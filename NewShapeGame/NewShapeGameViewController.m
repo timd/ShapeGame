@@ -256,7 +256,7 @@
     
     scoreLabel.text = [NSString stringWithFormat:@"%d", points];
     livesLabel.text = [NSString stringWithFormat:@"%d", lives];
-    roundLabel.text = [NSString stringWithFormat:@"Round %d", turn];
+    roundLabel.text = [NSString stringWithFormat:@"Level %d", turn];
     
 }
 
