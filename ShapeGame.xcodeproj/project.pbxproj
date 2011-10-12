@@ -715,10 +715,12 @@
 		2273776914420CF3002EE8B9 /* Ad-Hoc distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewShapeGame/ShapeGame-Prefix.pch";
 				INFOPLIST_FILE = "NewShapeGame/ShapeGame-Info.plist";
 				PRODUCT_NAME = shapegame;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad-Hoc distribution";
