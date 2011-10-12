@@ -90,9 +90,9 @@
 - (void)drawToolbar {
 
     // Add toolbar
-    toolbarRect = CGRectMake(20, 20, 280, 35);
+    toolbarRect = CGRectMake(0, 31, 320, 38);
     UIView *toolbarView = [[UIView alloc] initWithFrame:toolbarRect];
-    UIImageView *toolbar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"toolBar"]];
+    UIImageView *toolbar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"toolbar"]];
     [toolbarView addSubview:toolbar];
     [self.view addSubview:toolbarView];
     [toolbarView release];
@@ -256,6 +256,7 @@
     
     scoreLabel.text = [NSString stringWithFormat:@"%d", points];
     livesLabel.text = [NSString stringWithFormat:@"%d", lives];
+    roundLabel.text = [NSString stringWithFormat:@"Round %d", turn];
     
 }
 
@@ -342,6 +343,7 @@
         
     scoreLabel.text = [NSString stringWithFormat:@"%d", points];
     livesLabel.text = [NSString stringWithFormat:@"%d", lives];
+    roundLabel.text = [NSString stringWithFormat:@"%d", turn];
     
     [self shouldGameContinue];
     
@@ -392,28 +394,27 @@
     touchStartedInToolbar = YES;
     
     // Detect which tool was touched
-    int correctedX = (touchLoc.x - 20);
-    int touchMod = correctedX / 35;
+    int touchMod = (int)touchLoc.x / 40;
     
     switch (touchMod) {
         case (0):
             // Create cursor & add to view
-            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueCursor"]];
+            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splodge-blue"]];
             cursorShape = 0;
             cursorColour = 1;
             break;
         case (1):
-            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenCursor"]];
+            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splodge-green"]];
             cursorShape = 0;
             cursorColour = 2;
             break;
         case (2):
-            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redCursor"]];
+            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splodge-red"]];
             cursorShape = 0;
             cursorColour = 3;
             break;
         case (3):
-            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yellowCursor"]];
+            cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splodge-yellow"]];
             cursorShape = 0;
             cursorColour = 4;
             break;
@@ -688,6 +689,7 @@
      [guessButton release];
      [scoreLabel release];
      [livesLabel release];
+     [roundLabel release];
      [super dealloc];
  }
 
@@ -702,6 +704,8 @@
      scoreLabel = nil;
      [livesLabel release];
      livesLabel = nil;
+     [roundLabel release];
+     roundLabel = nil;
      [super viewDidUnload];
  }
 

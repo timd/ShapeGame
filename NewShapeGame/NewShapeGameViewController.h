@@ -44,6 +44,7 @@
     
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *livesLabel;
+    IBOutlet UILabel *roundLabel;
     
 }
 
