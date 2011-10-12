@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class BoardCell;
+
 @interface NewShapeGameViewController : UIViewController <UIAlertViewDelegate> {
     
     int points;     // score
@@ -41,6 +43,12 @@
     int cursorShape;
     int cursorColour;
     BOOL touchStartedInToolbar;
+    BOOL touchStartedInBoard;
+    
+    // Board drag ivars
+    BoardCell *cellContentsBeingDragged;
+    int cellWhereDragStarted;
+    int cellWhereDragEnded;
     
     IBOutlet UILabel *scoreLabel;
     IBOutlet UILabel *livesLabel;
@@ -54,6 +62,9 @@
 
 - (IBAction)refreshBoard:(id)sender;
 - (IBAction)guessButtonTapped:(id)sender;
+
+-(int)getCellWhereTouchEndedWithTouch:(CGPoint)touchLoc;
+-(BoardCell *)getTheBoardCellWithTag:(int)theTag;
 
 - (void)placeShapesOnBoardWith:(NSArray *)theArray;
 

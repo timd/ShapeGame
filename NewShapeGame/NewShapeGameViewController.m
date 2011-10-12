@@ -1,4 +1,4 @@
-//
+    //
 //  NewShapeGameViewController.m
 //  NewShapeGame
 //
@@ -392,6 +392,7 @@
 -(void)handleTouchStartingInToolbarWithTouch:(CGPoint)touchLoc {
     
     touchStartedInToolbar = YES;
+    touchStartedInBoard = NO;
     
     // Detect which tool was touched
     int touchMod = (int)touchLoc.x / 40;
@@ -445,15 +446,105 @@
     
     [cursorImage setCenter:touchLoc];
     [self.view addSubview:cursorImage];
-
     
 }
 
 -(void)handleTouchStartingInBoardWithTouch:(CGPoint)touchLoc {
     
     NSLog(@"touched started in board");
+    touchStartedInBoard = YES;
+    touchStartedInToolbar = NO;
+    
+    // Get the tag of the cell that's been touched
+    cellWhereDragStarted = 99;
+        
+    cellWhereDragStarted = [self getCellWhereTouchEndedWithTouch:touchLoc];
+    
+    // Check if anything was returned (ie whether there's anything in the cell or not)
+    
+    if (cellWhereDragStarted!= 99) {
+        
+        // Get the board cell for that tag
+        BoardCell *theTouchedCell = [self getTheBoardCellWithTag:cellWhereDragStarted];
+        
+        // Set the ivar so we can retrieve whatever's being dragged later
+        cellContentsBeingDragged = [[BoardCell alloc] init];
+        cellContentsBeingDragged.colour = theTouchedCell.colour;
+        cellContentsBeingDragged.shape = theTouchedCell.shape;
+
+        NSLog(@"theTouchedCell.shape = %d", theTouchedCell.shape);
+        NSLog(@"theTouchedCell.color = %d", theTouchedCell.colour);
+        NSLog(@"cellContentsBeingDragged.shape = %d", cellContentsBeingDragged.shape);
+        NSLog(@"cellContentsBeingDragged.color = %d", cellContentsBeingDragged.colour);
+        
+        // Remove the contents of this cell from the answersArray
+        // First, get the BoardCell from the correct location in the board
+        NSUInteger index;
+        index = [self.answersArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            BoardCell *theBoardCell = (BoardCell *)obj;
+            return (theBoardCell.tag == cellWhereDragStarted);
+        }];
+        
+        // Get the cell which was touched from the answers array
+        BoardCell *theBoardCell = [self.answersArray objectAtIndex:index];
+        
+        // Then reset the contents of this
+        theBoardCell.colour = 0;
+        theBoardCell.shape = 0;
+        
+        // and update the board
+        [self placeShapesOnBoardWith:self.answersArray];
+        
+        // Draw the contents of the cell being moved under the touch
+        // Create the image string from the theTouchedCell properties
+        NSString *cursorImageString = [NSString stringWithFormat:@"%d%d", cellContentsBeingDragged.colour, cellContentsBeingDragged.shape];
+        NSLog(@"cursorImageString = %@", cursorImageString);
+        cursorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:cursorImageString]];
+        [cursorImage setCenter:touchLoc];
+        [self.view addSubview:cursorImage];
+        
+    } else {
+        
+        // Nothing was returned, so there isn't anything in the 
+        // touched cell
+        
+        return;
+        
+    }
     
 }
+
+-(BoardCell *)getTheBoardCellWithTag:(int)theTag {
+    
+    // First, get the BoardCell from the correct location in the board
+    NSUInteger index;
+    index = [self.answersArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        BoardCell *theBoardCell = (BoardCell *)obj;
+        return (theBoardCell.tag == theTag);
+    }];
+    
+    // Check if there's anything been found
+    
+    if (index != NSNotFound) {
+    
+        BoardCell *theBoardCell = [self.answersArray objectAtIndex:index];
+        
+        // Figure out what's in the cell
+        NSLog(@"Tag = %d", theTag);
+        NSLog(@"BoardCell.color = %d", theBoardCell.colour);
+        NSLog(@"BoardCell.shape = %d", theBoardCell.shape);
+        
+        return theBoardCell;
+        
+    } else {
+        
+        // There wasn't anything in the touched cell
+        return nil;
+        
+    }
+    
+}
+
 
 -(int)getCellWhereTouchEndedWithTouch:(CGPoint)touchLoc {
     
@@ -523,6 +614,15 @@
         cursorColour = 0;
         cursorShape = 0;
         
+    } else if (touchStartedInBoard) {
+        // CASE TWO - TOUCH STARTED IN BOARD
+        
+        // Reset the cell to whatever it should be
+        theBoardCell.shape = cellContentsBeingDragged.shape;
+        theBoardCell.colour = cellContentsBeingDragged.colour;
+        
+        // Clear the cellContentsBeingDragged because they're not needed anymore
+        cellContentsBeingDragged = nil;
         
     } else {
         
@@ -551,6 +651,25 @@
     [self placeShapesOnBoardWith:self.answersArray];
     
     [cursorImage removeFromSuperview];
+    
+}
+
+-(void)clearTheCellWithTag:(int)theTag {
+    
+    // First, get the BoardCell from the correct location in the board
+    NSUInteger index;
+    index = [self.answersArray indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        BoardCell *theBoardCell = (BoardCell *)obj;
+        return (theBoardCell.tag == theTag);
+    }];
+    
+    BoardCell *theBoardCell = [self.answersArray objectAtIndex:index];
+
+    // Touch started elsewhere, just clear the cell
+    theBoardCell.shape = 0;
+    theBoardCell.colour = 0;
+    
+    [self placeShapesOnBoardWith:self.answersArray];
     
 }
 
@@ -600,8 +719,10 @@
         if (cursorImage) {
             [cursorImage setCenter:touchLoc];
         }
+        
     }
-     
+    
+    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -623,21 +744,48 @@
 
         if (CGRectContainsPoint(boardRect, touchLoc)) {
             
-            // Get the tag of the cell where the touch ended
-            int endTag = [self getCellWhereTouchEndedWithTouch:touchLoc];
+            // Check if the touch started in the toolbar; if yes
+            // then drop the cursor image into the square
+
+            // Figure out where the drag ended
+            cellWhereDragEnded = [self getCellWhereTouchEndedWithTouch:touchLoc];
+
+            if (touchStartedInToolbar) {
             
-            // Figure out what to do
-            [self handleTouchEndingWithinBoardWithTouch:touchLoc andTag:endTag];            
-            
-        } else {
-            // touch ended elsewhere
-            if (cursorImage) {
-                [cursorImage removeFromSuperview];
-                cursorImage = nil;
+                // Figure out what to do
+                [self handleTouchEndingWithinBoardWithTouch:touchLoc andTag:cellWhereDragEnded];
+
+            } else if (touchStartedInBoard) {
+
+                // Touch started in the board.  If there's a cursorImage currently,
+                // we need to drop that into the current board cell
+                
+                // Check if the touch ended in the same cell as it started
+                if (cellWhereDragStarted == cellWhereDragEnded) {
+                    // started and ended in the same cell, therefore
+                    // just clear the cell and the cursor image
+                    [cursorImage removeFromSuperview];
+                    cursorImage = nil;
+                    
+                } else {
+                
+                    // Now drop whatever's being dragged into this cell
+                    [self handleTouchEndingWithinBoardWithTouch:touchLoc andTag:cellWhereDragEnded];
+                    
+                }
             }
+                
+        } else {
+
+                // touch ended elsewhere
+                if (cursorImage) {
+                    [cursorImage removeFromSuperview];
+                    cursorImage = nil;
+                }
+            
         }
     }
-}   
+}
         
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
